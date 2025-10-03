@@ -1,0 +1,1 @@
+web: python krishna_bot.py

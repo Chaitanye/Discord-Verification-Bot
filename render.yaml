@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: krishna-verification-bot
+    env: python
+    runtime: python-3.11.0
+    buildCommand: pip install -r requirements.txt
+    startCommand: python krishna_bot.py
+    envVars:
+      - key: DISCORD_BOT_TOKEN
+        sync: false
+      - key: SERVER_ID  
+        value: "1312340373649100821"
+      - key: AI_API_KEY
+        sync: false

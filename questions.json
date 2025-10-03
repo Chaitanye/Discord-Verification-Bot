@@ -1,0 +1,66 @@
+{
+  "entry": [
+    {
+      "id": "E1",
+      "question": "What brings you to this Krishna-conscious community? Are you here to explore, learn, or something else?"
+    },
+    {
+      "id": "E2", 
+      "question": "Are you someone who values respectful dialogue, even when views differ?"
+    },
+    {
+      "id": "E3",
+      "question": "What are your views on Srila Prabhupada and ISKCON?"
+    }
+  ],
+  "reflective": [
+    {
+      "id": "R1",
+      "question": "What do you feel when you see someone living a calm, spiritual life centered on devotion?"
+    },
+    {
+      "id": "R2",
+      "question": "What would you ask Krishna if He stood before you right now?"
+    },
+    {
+      "id": "R3",
+      "question": "Have you ever felt a connection to something divine or spiritual?"
+    },
+    {
+      "id": "R4",
+      "question": "Is there any spiritual quality (like patience or humility) you wish to develop?"
+    }
+  ],
+  "psychological": {
+    "trusted": [
+      {
+        "id": "P1",
+        "question": "What does humility mean to you in a spiritual or personal sense?"
+      },
+      {
+        "id": "P2",
+        "question": "If someone peacefully questioned your beliefs, how would you respond?"
+      }
+    ],
+    "medium": [
+      {
+        "id": "P3",
+        "question": "How would you handle it if your beliefs were mocked online?"
+      },
+      {
+        "id": "P4",
+        "question": "If someone mocked Krishna or bhakti near you, what would you feel or do?"
+      }
+    ],
+    "high": [
+      {
+        "id": "P5",
+        "question": "What would you do if a devotee corrected you firmly on a topic?"
+      },
+      {
+        "id": "P6",
+        "question": "If told your views don't align with the bhakti philosophy here, how would you respond?"
+      }
+    ]
+  }
+}
