@@ -2,50 +2,62 @@
   "entry": [
     {
       "id": "E1",
-      "question": "What brings you to this Krishna-conscious community? Are you here to explore, learn, or something else?"
+      "question": "Are you a Vaiṣṇava? If not, which sampradāya or tradition do you follow?"
     },
     {
-      "id": "E2", 
-      "question": "Are you someone who values respectful dialogue, even when views differ?"
+      "id": "E2",
+      "question": "What are your views on the Vaiṣṇava ācāryas and their teachings?"
     },
     {
       "id": "E3",
-      "question": "What are your views on Srila Prabhupada and ISKCON?"
+      "question": "How did you find this server, and what attracted you to join?"
+    },
+    {
+      "id": "E4",
+      "question": "What brings you to this Krishna-conscious community? (Learning, association, service, etc.)"
+    },
+    {
+      "id": "E5",
+      "question": "Will you follow the rules and maintain respectful behavior in this server?"
+    },
+    {
+      "id": "E6",
+      "question": "Are you formally initiated into any sampradāya or following a particular guru?"
     }
   ],
   "reflective": [
     {
       "id": "R1",
-      "question": "What do you feel when you see someone living a calm, spiritual life centered on devotion?"
+      "question": "What inspires you most about Krishna-bhakti or the life of a devotee?"
     },
     {
       "id": "R2",
-      "question": "What would you ask Krishna if He stood before you right now?"
+      "question": "If Krishna appeared before you now, what would you ask or say to Him?"
     },
     {
       "id": "R3",
-      "question": "Have you ever felt a connection to something divine or spiritual?"
+      "question": "Have you ever felt a personal or emotional connection to Krishna or the divine?"
     },
     {
       "id": "R4",
-      "question": "Is there any spiritual quality (like patience or humility) you wish to develop?"
+      "question": "Which spiritual quality (like humility, patience, compassion) would you most like to develop?"
     }
   ],
   "psychological": {
     "trusted": [
       {
         "id": "P1",
-        "question": "What does humility mean to you in a spiritual or personal sense?"
+        "question": "What does humility mean to you in the context of spiritual life?"
       },
       {
         "id": "P2",
-        "question": "If someone peacefully questioned your beliefs, how would you respond?"
+        "question": "If someone gently questioned your beliefs, how would you respond?"
       }
     ],
     "medium": [
       {
         "id": "P3",
-        "question": "How would you handle it if your beliefs were mocked online?"
+        "question": "How would you handle it if someone mocked your beliefs online?"
       },
       {
         "id": "P4",
