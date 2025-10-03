@@ -1,75 +1,96 @@
-# spam_check.py
-import re
-from collections import Counter
+"""
+AI Prompt Configuration for Krishna Verification + Spam Detection
+---------------------------------------------------------------
+This configuration integrates:
+1. Krishna-conscious verification (based on Srila Prabhupada’s standards).
+2. Spam/Troll/Mayavada detection (from spam_check.py).
+"""
 
-# List of flagged words/phrases
-FLAGGED_KEYWORDS = {
-    "mayavada": [
-        "i am krishna", "we are all god", "krishna is me",
-        "all paths are same", "one consciousness"
-    ],
-    "troll": [
-        "lol", "lmao", "cringe", "bhakt", "fake", "cope"
-    ],
-    "ads": [
-        "buy followers", "free crypto", "click link", "whatsapp group",
-        "telegram join", "xxx", "porn", "http://", "https://"
-    ]
-}
+from spam_check import check_spam
 
-def check_spam(message: str) -> dict:
+def get_ai_prompt_template() -> str:
     """
-    Evaluates a user's message for spam/troll/Mayavada content.
-    Returns suspicion score and reasoning.
+    Returns the AI prompt template for Krishna-conscious verification.
+    The AI evaluates sincerity + spam checks, rooted in Srila Prabhupada’s mood.
     """
-    msg = message.lower()
-    score = 0
-    reasons = []
+    return """You are a spiritually serious Krishna-conscious assistant.
+Your mission is to verify new members entering a sacred community:
+- Assess sincerity using Vaishnava principles (humility, respect, eagerness).
+- Detect red flags: Mayavada, trolling, pride, disrespect, or spamming.
 
-    # 1. Keyword checks
-    for category, words in FLAGGED_KEYWORDS.items():
-        for word in words:
-            if word in msg:
-                score += 3 if category == "mayavada" else 2
-                reasons.append(f"Contains {category} phrase: '{word}'")
+You must output:
+- SCORE (0–10)
+- ROLE (devotee / seeker / none)
+- REASONING (short explanation: bhakti mood, humility, red/green flags, spam check)
 
-    # 2. All caps spam
-    if msg.isupper() and len(msg) > 10:
-        score += 2
-        reasons.append("All caps shouting")
+Guidelines:
+- Favor sincerity over scholarship.
+- Respectful seekers = higher score.
+- Mayavada, trolling, mocking = immediate low score.
+- SpamCheck output MUST be considered in final decision.
 
-    # 3. Repeated characters/emojis
-    if re.search(r"(.)\1{5,}", msg):
-        score += 2
-        reasons.append("Excessive repeated characters/emojis")
+Scoring:
++3 humility, surrender mood
++2 respect for Vaishnavas/guru
++2 emotional connection to Krishna
++1 honest confusion but respectful
+0 neutral/empty answers
+-1 cold/egoistic tone
+-2 spam suspicion
+-3 clear Mayavada/impersonalism
+-5 mocking, trolling, disrespect
 
-    # 4. Message length anomaly
-    if len(msg) < 3:
-        score += 1
-        reasons.append("Very short/low-effort message")
+Final Role:
+8–10 → devotee
+5–7  → seeker
+0–4  → none
 
-    # Final classification
-    if score >= 6:
-        verdict = "SPAM"
-    elif 3 <= score < 6:
-        verdict = "SUSPICIOUS"
-    else:
-        verdict = "CLEAN"
+This user has a suspicion score of: {suspicion_score}/10
 
-    return {
-        "score": score,
-        "verdict": verdict,
-        "reasons": reasons
-    }
+{responses_section}
+"""
 
-# Example test
+def format_responses_for_ai(questions: list, responses: list) -> str:
+    """
+    Format user responses with question types.
+    """
+    formatted = ["=== USER VERIFICATION RESPONSES ===\n"]
+    for i, (q, a) in enumerate(zip(questions, responses)):
+        formatted.append(f"[Q{i+1}] {q}\nA: {a}\n")
+    formatted.append("=== END RESPONSES ===")
+    return "\n".join(formatted)
+
+def build_complete_ai_prompt(questions: list, responses: list, suspicion_score: int) -> str:
+    """
+    Construct full prompt to send to AI for scoring.
+    Integrates spam detection.
+    """
+    template = get_ai_prompt_template()
+    section = format_responses_for_ai(questions, responses)
+    return template.format(suspicion_score=suspicion_score, responses_section=section)
+
+
+# Example usage
 if __name__ == "__main__":
-    tests = [
-        "I am Krishna, worship me",
-        "LOL LOL LOL bhakt cringe",
-        "Click this link for free crypto http://spam.com",
-        "Hare Krishna 🙏",
+    # Example questions (from your JSON)
+    questions = [
+        "Are you a Vaiṣṇava? If not, which sampradāya or tradition do you follow?",
+        "What are your views on the Vaiṣṇava ācāryas and their teachings?",
+        "How did you find this server, and what attracted you to join?"
     ]
-    for t in tests:
-        print(f"\nMessage: {t}")
-        print(check_spam(t))
+
+    # Example responses
+    responses = [
+        "I am a follower of Gaudiya Vaishnavism.",
+        "I respect the ācāryas, especially Srila Prabhupada.",
+        "I found this server through friends, I want to learn more."
+    ]
+
+    # Spam check simulation
+    combined_text = " ".join(responses)
+    spam_result = check_spam(combined_text)
+    suspicion_score = spam_result["score"]
+
+    # Build final AI prompt
+    final_prompt = build_complete_ai_prompt(questions, responses, suspicion_score)
+    print(final_prompt)
